@@ -7,12 +7,32 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16954315822">
     </script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'AW-16954315822');
+        gtag('config', 'AW-16954315822');
     </script>
+    <!-- Event snippet for Compra conversion page
+    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+        function gtag_report_conversion(url) {
+        var callback = function () {
+            if (typeof(url) != 'undefined') {
+            window.location = url;
+            }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-16954315822/PH_cCI3Yj7MaEK6ouZQ_',
+            'value': 1.0,
+            'currency': 'BRL',
+            'transaction_id': '',
+            'event_callback': callback
+        });
+        return false;
+        }
+    </script>
+    
     <title>Guia de Receitas Saudáveis - Alimentação Balanceada</title>
     <style>
         * {
@@ -351,6 +371,7 @@
         function buyNow() {
             if(confirm('Ao comprar você confirma que:\n\n- Leu e aceitou os Termos de Uso\n- Concorda com a Política de Privacidade\n- Entende que são sugestões alimentares')) {
                 alert('Você será redirecionado para nosso parceiro de pagamentos...');
+                gtag_report_conversion('https://pay.kirvano.com/007b4bb0-5382-47fe-bfab-5e2f86461e58')
                 window.location.href = 'https://pay.kirvano.com/007b4bb0-5382-47fe-bfab-5e2f86461e58';
             }
         }
